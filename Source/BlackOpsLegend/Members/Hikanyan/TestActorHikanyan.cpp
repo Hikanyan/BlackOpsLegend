@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Members/Hikanyan/TestActorHikanyan.h"
+#include "BlackOpsLegend/Members/Hikanyan/TestActorHikanyan.h"
 
 // Sets default values
 ATestActorHikanyan::ATestActorHikanyan()

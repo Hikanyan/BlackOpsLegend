@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Members/Usugi/UsugiTestActor.h"
+#include "BlackOpsLegend/Members/Usugi/UsugiTestActor.h"
 
 // Sets default values
 AUsugiTestActor::AUsugiTestActor()

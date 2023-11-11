@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Members/Saruwatari/SaruwatariTestActor.h"
+#include "BlackOpsLegend/Members/Saruwatari/SaruwatariTestActor.h"
 
 // Sets default values
 ASaruwatariTestActor::ASaruwatariTestActor()
