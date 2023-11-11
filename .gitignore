@@ -76,4 +76,4 @@ DerivedDataCache/*
 .idea/
 
 # IgnoreAssetPath
-Content/ImportAsset
+Content/ImportAsset/*
