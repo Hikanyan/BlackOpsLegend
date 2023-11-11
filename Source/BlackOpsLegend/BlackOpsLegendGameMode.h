@@ -10,7 +10,7 @@ UCLASS(minimalapi)
 class ABlackOpsLegendGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-
+	virtual void StartPlay() override;
 public:
 	ABlackOpsLegendGameMode();
 };
