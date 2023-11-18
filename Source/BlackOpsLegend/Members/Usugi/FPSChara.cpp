@@ -42,6 +42,8 @@ AFPSChara::AFPSChara()
 
 	// The owning player doesn't see the regular (third-person) body mesh.
 	GetMesh()->SetOwnerNoSee(true);
+
+
 }
 
 // Called when the game starts or when spawned
