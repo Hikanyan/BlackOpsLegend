@@ -6,6 +6,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "FPSChara.generated.h"
 
 UCLASS()
@@ -20,7 +22,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -41,4 +43,8 @@ public:
 	// Clears jump flag when key is released.
 	UFUNCTION()
 	void StopJump();
+
+	// FPS camera.
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* FPSCameraComponent;
 };
