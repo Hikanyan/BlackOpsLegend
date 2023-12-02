@@ -77,3 +77,5 @@ DerivedDataCache/*
 
 # IgnoreAssetPath
 Content/ImportAsset
+Content/Megascans/
+Content/MSPresets/
