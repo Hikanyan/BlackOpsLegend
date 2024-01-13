@@ -1,4 +1,4 @@
-#include "Members/Hikanyan/Manager/GameManager.h"
+#include "Members/Hikanyan/GameManager.h"
 #include "GameFramework/Character.h"
 #include "EngineUtils.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -14,9 +14,11 @@ AGameManager::AGameManager()
 void AGameManager::BeginPlay()
 {
 	// ゲーム開始時の処理
+	// TitleMapの場合はここでプレイヤー数を表示する
+	// マッチング開始
 	// 
 
-	
+
 	Super::BeginPlay();
 	if (GetWorld()->GetNetMode() == NM_DedicatedServer)
 	{
