@@ -22,6 +22,8 @@ void AGameManager::BeginPlay()
 	Super::BeginPlay();
 	if (GetWorld()->GetNetMode() == NM_DedicatedServer)
 	{
+		//デバック
+		UKismetSystemLibrary::PrintString(this, TEXT("DedicatedServer"), true, true, FLinearColor::Green, 0.f);
 		// サーバー専用のロジック
 		// ゲーム開始時にプレイヤー数を取得
 		GetAllPlayers();
