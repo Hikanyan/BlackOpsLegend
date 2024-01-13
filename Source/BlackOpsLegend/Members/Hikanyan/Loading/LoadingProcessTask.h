@@ -12,7 +12,7 @@
 struct FFrame;
 
 UCLASS(BlueprintType)
-class COMMONLOADINGSCREEN_API ULoadingProcessTask : public UObject, public ILoadingProcessInterface
+class BLACKOPSLEGEND_API ULoadingProcessTask : public UObject, public ILoadingProcessInterface
 {
 	GENERATED_BODY()
 	

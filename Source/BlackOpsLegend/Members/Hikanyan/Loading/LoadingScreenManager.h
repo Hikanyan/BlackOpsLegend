@@ -29,7 +29,7 @@ struct FWorldContext;
  * Handles showing/hiding the loading screen
  */
 UCLASS()
-class COMMONLOADINGSCREEN_API ULoadingScreenManager : public UGameInstanceSubsystem, public FTickableGameObject
+class BLACKOPSLEGEND_API ULoadingScreenManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
 	GENERATED_BODY()
 
