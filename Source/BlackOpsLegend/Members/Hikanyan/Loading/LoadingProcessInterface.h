@@ -9,12 +9,12 @@
 
 /** Interface for things that might cause loading to happen which requires a loading screen to be displayed */
 UINTERFACE(BlueprintType)
-class COMMONLOADINGSCREEN_API ULoadingProcessInterface : public UInterface
+class BLACKOPSLEGEND_API ULoadingProcessInterface : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class COMMONLOADINGSCREEN_API ILoadingProcessInterface
+class BLACKOPSLEGEND_API ILoadingProcessInterface
 {
 	GENERATED_BODY()
 
