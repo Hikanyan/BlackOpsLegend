@@ -1,9 +1,8 @@
-#include "Members/Hikanyan/GameManager.h"
+#include "GameManager.h"
 #include "GameFramework/Character.h"
 #include "EngineUtils.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "GameFramework/PlayerController.h"
-#include "GameFramework/PlayerStart.h"
 
 AGameManager::AGameManager()
 {
