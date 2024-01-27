@@ -6,7 +6,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "BlackOpsLegend/Members/Usugi/FPSProjectile.h"
 #include "FPSChara.generated.h"
+// 編集者：薄衣　毅
+//　編集日：2023/11/11
 
 UCLASS()
 class BLACKOPSLEGEND_API AFPSChara : public ACharacter
@@ -21,6 +26,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Projectile class to spawn.
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+	TSubclassOf<class AFPSProjectile> ProjectileClass;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -41,4 +50,20 @@ public:
 	// Clears jump flag when key is released.
 	UFUNCTION()
 	void StopJump();
+
+	// Function that handles firing projectiles.
+	UFUNCTION()
+	void Fire();
+
+	// FPS camera.
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* FPSCameraComponent;
+	
+	// First-person mesh (arms), visible only to the owning player.
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	USkeletalMeshComponent* FPSMesh;
+
+	// Gun muzzle offset from the camera location.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	FVector MuzzleOffset;
 };

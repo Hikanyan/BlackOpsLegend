@@ -6,12 +6,44 @@
 #include "Kismet/GameplayStatics.h"
 #include "EnvironmentQuery/EnvQueryTypes.h"
 
+
 // Sets default values
 AFPSChara::AFPSChara()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
+	// Create a first person camera component.
+	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+	check(FPSCameraComponent != nullptr);
+
+	// Attach the camera component to our capsule component.
+	FPSCameraComponent->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+
+	// Position the camera slightly above the eyes.
+	FPSCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
+
+	// Enable the pawn to control camera rotation.
+	FPSCameraComponent->bUsePawnControlRotation = true;
+
+	// Create a first person mesh component for the owning player.
+	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
+	check(FPSMesh != nullptr);
+
+	// Only the owning player sees this mesh.
+	FPSMesh->SetOnlyOwnerSee(true);
+
+	// Attach the FPS mesh to the FPS camera.
+	FPSMesh->SetupAttachment(FPSCameraComponent);
+
+	// Disable some environmental shadows to preserve the illusion of having a single mesh.
+	FPSMesh->bCastDynamicShadow = false;
+	FPSMesh->CastShadow = false;
+
+	// The owning player doesn't see the regular (third-person) body mesh.
+	GetMesh()->SetOwnerNoSee(true);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -46,7 +78,7 @@ void AFPSChara::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	// Set up "action" bindings.
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSChara::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AFPSChara::StopJump);
-
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSChara::Fire);
 	
 }
 
@@ -59,6 +91,46 @@ void AFPSChara::StopJump()
 {
 	bPressedJump = false;
 }
+
+void AFPSChara::Fire()
+{
+	// Attempt to fire a projectile.
+	if (ProjectileClass)
+	{
+		// Get the camera transform.
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+		// Set MuzzleOffset to spawn projectiles slightly in front of the camera.
+		MuzzleOffset.Set(100.0f, 0.0f, 0.0f);
+
+		// Transform MuzzleOffset from camera space to world space.
+		FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+
+		// Skew the aim to be slightly upwards.
+		FRotator MuzzleRotation = CameraRotation;
+		MuzzleRotation.Pitch += 10.0f;
+
+		UWorld* World = GetWorld();
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+
+			// Spawn the projectile at the muzzle.
+			AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+			if (Projectile)
+			{
+				// Set the projectile's initial trajectory.
+				FVector LaunchDirection = MuzzleRotation.Vector();
+				Projectile->FireInDirection(LaunchDirection);
+			}
+		}
+	}
+}
+
 
 void AFPSChara::MoveForward(float Value)
 {
