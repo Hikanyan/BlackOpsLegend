@@ -78,3 +78,4 @@ DerivedDataCache/*
 # IgnoreAssetPath
 Content/ImportAsset/*
 Content/ImportAsset_v01.7z
+Output/
