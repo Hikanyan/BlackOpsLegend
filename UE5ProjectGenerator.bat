@@ -29,5 +29,5 @@ if defined uprojectpath (
     echo 現在のディレクトリに .uproject ファイルが見つかりませんでした。
     pause
 )
-
+@rem バンタンゲームアカデミー東京校 4年制ゲームプログラマ専攻 22生 作成者 宮﨑 光琉
 :end
