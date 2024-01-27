@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+// 編集者：薄衣　毅
+//　編集日：2023/11/11
 #pragma once
 
 #include "CoreMinimal.h"

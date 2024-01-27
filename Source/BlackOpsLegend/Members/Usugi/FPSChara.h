@@ -10,6 +10,8 @@
 #include "Components/CapsuleComponent.h"
 #include "BlackOpsLegend/Members/Usugi/FPSProjectile.h"
 #include "FPSChara.generated.h"
+// 編集者：薄衣　毅
+//　編集日：2023/11/11
 
 UCLASS()
 class BLACKOPSLEGEND_API AFPSChara : public ACharacter
